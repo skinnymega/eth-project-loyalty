@@ -372,6 +372,25 @@ export const loyaltyTransactionABI = [
 		"type": "event"
 	},
 	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "cpf",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "Reward",
+				"type": "string"
+			}
+		],
+		"name": "newReward",
+		"type": "event"
+	},
+	{
 		"constant": true,
 		"inputs": [
 			{
@@ -446,6 +465,31 @@ export const loyaltyTransactionABI = [
 		],
 		"payable": false,
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_cpf",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_rewardPrice",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_reward",
+				"type": "string"
+			}
+		],
+		"name": "collectReward",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -638,6 +682,46 @@ export const loyaltyTransactionABI = [
 		],
 		"payable": false,
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint8",
+				"name": "_newPointRule",
+				"type": "uint8"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_cnpj",
+				"type": "uint256"
+			}
+		],
+		"name": "setPointPerCash",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_transactionValue",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_cpf",
+				"type": "uint256"
+			}
+		],
+		"name": "sumPoints",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
 		"type": "function"
 	}
 ]
