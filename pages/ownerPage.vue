@@ -69,23 +69,22 @@ export default {
         }
       }
       if (validated) {
-        this.$refs.form.reset()
         alert('Successful submission.')
       } else {
         alert('Preencha o formulário corretamente.')
       }
+      setTimeout(() => {
+        this.$refs.form.reset()
+      }, 2000)
     },
     async initWeb3 () {
       if (typeof window.ethereum !== 'undefined') {
         try {
-          await window.ethereum.send('eth_requestAccounts')
+          const accounts = await window.ethereum.send('eth_requestAccounts')
           const instance = new Web3(window.ethereum)
-          const account = instance.eth.accounts
-          console.log(account)
+          const userAccount = accounts.result[0]
           const myTransactionContract = new instance.eth.Contract(loyaltyTransactionABI, '0x1b9d736BE6Abb6656E22F5F4637dD91790a5e7Eb')
-          await myTransactionContract.methods.sumPoints(1000, 123).send({ from: '0x6f610DcC2eAb7dC4E93A22eFEEa2370ccfabF936' })
-          const newPoints = await myTransactionContract.methods.getPoints(123).call()
-          console.log(newPoints)
+          await myTransactionContract.methods.sumPoints(parseInt(this.questions[1].value), parseInt(this.questions[0].value)).send({ from: userAccount })
         } catch (error) {
           console.error('User denied web3 access', error)
         }

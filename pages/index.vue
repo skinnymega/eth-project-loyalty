@@ -106,7 +106,7 @@ export default {
           // accessing the smart contracts deployed on ethereum Rinkeby testnet
           const myTransactionContract = new instance.eth.Contract(loyaltyTransactionABI, '0x1b9d736BE6Abb6656E22F5F4637dD91790a5e7Eb')
           // Get necessary info on your node
-          const points = await myTransactionContract.methods.getPoints(123).call()
+          const points = await myTransactionContract.methods.getPoints(parseInt(this.cpf)).call()
           this.points = points
           /* const networkId = await instance.eth.net.getId()
           const coinbase = await instance.eth.getCoinbase()
