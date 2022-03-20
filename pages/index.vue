@@ -67,11 +67,11 @@ export default {
   },
   methods: {
     usePoints (cost, product) {
-      if (cost > this.points) {
+      const intCost = parseInt(cost)
+      if (intCost > this.points) {
         alert('Você não possui saldo suficiente.')
       } else {
-        console.log(cost)
-        this.points -= Number(cost)
+        this.points -= intCost
         const ordersCookieItem = {
           cpf: this.cpf,
           product,
@@ -125,9 +125,6 @@ export default {
         console.error('No web3 provider detected')
       }
     }
-  },
-  mounted () {
-    this.cpf = this.$cookies.get('cpfCookie')
   }
 }
 </script>
